@@ -1,0 +1,84 @@
+import telebot;
+from telebot import types;
+bot = telebot.TeleBot("7024668133:AAGINbB6hdQwF4KVxJhgzBHoJJO6w0VzN_Q");
+@bot.message_handler(content_types=['text', 'photo'])
+def start_messages(message):
+    if message.text == "/start":
+        bot.send_message(message.from_user.id, "Здравствуй, message.chat.first_name. Добро пожаловать в игру 'Glimmer of Guilt'! Сегодня тебе предстоит разгадать дело о запутанном и страшном деле о любви... и убийстве. Если ты готов начать, напиши 'Да'.")
+        photo = open('/Users/turgaria/Downloads/ohmygod.jpeg', 'rb') 
+        bot.send_photo(message.chat.id, photo)
+        photo.close()
+    if message.text == "Да":
+        bot.send_message(message.from_user.id, "Город, год. Ты детектив по имени message.chat.first_name. Неделю назад тебе позвонили и сообщили об убийстве. Ты приехал туда. Увидел старый дом. С кем поговоришь первым? Напиши имя персонажа")
+    if message.text == "1":
+        bot.send_message(message.from_user.id, "Он сказал тебе, что был в саду")
+    if message.text == "2":
+        bot.send_message(message.from_user.id, "Он сказал тебе, что был в гостиной")
+    if message.text == "3":
+        bot.send_message(message.from_user.id, "Он сказал тебе, что был в кабинете")
+    if message.text == "Закончить допрос":
+        keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=False, one_time_keyboard=True)
+        btn1 = types.KeyboardButton(text="В кабинет")
+        btn2 = types.KeyboardButton(text="В гостиную")
+        btn3 = types.KeyboardButton(text="В сад")
+        keyboard.add(btn1, btn2, btn3)
+        bot.send_message(message.chat.id, text="После допроса ты решил пойти осмотреться. Куда пойдем?", reply_markup=keyboard) 
+    if message.text == "В сад":
+        keyboard2 = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=False, one_time_keyboard=True)
+        btn4 = types.KeyboardButton(text="В кабинет")
+        btn5 = types.KeyboardButton(text="В гостиную")
+        keyboard2.add(btn4, btn5)
+        bot.send_message(message.chat.id, text="Сад заперт на ключ. Пойди куда-нибудь еще")
+    if message.text == "В кабинет": 
+        keyboard3 = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=False, one_time_keyboard=True)
+        btn8 = types.KeyboardButton(text="Выглянуть в окно")
+        btn9 = types.KeyboardButton(text="Осмотреть бумаги")
+        keyboard3.add(btn8, btn9)
+        bot.send_message(message.chat.id, text="Ты зашел в кабинет. Там стоит стол, кресло, на стене непонятная карта. Через окно видно сад, на прогулке в котором застрелили лорда. На столе ворох непонятных бумаг и загадочный предмет.")
+    if message.text == "Выглянуть в окно": 
+        bot.send_message(message.chat.id, text="Ты смотришь на место преступления. Вокруг цветы и деревья. И вдруг вдалеке промелькнула чья-то тень... Надо поторопиться, тебе здесь явно не рады")
+    if message.text == "Осмотреть бумаги": 
+        bot.send_message(message.chat.id, text="На столе лежат бумаги - неоплаченные счета, документы, заметки лорда. Полная пепельница и хаос. Ты открыл выдвижной ящик и увидел странную шкатулку с загадочными надписями... На боку шкатулки есть замок. Кажется, ее можно открыть только если знать код. Или нет? Напиши 'Начать', чтобы приступить к загадке")
+    if message.text == "Начать": 
+        markup = types.InlineKeyboardMarkup()
+        button1 = types.InlineKeyboardButton("Загадка", url='https://vk.com/timestreamcat')
+        markup.add(button1)
+    if message.text == "В гостиную":
+        bot.send_message(message.chat.id, text="Направо или налево?")
+    if message.text == "Направо":
+        bot.send_message(message.chat.id, text="Вас убили. Вы проиграли")
+    if message.text == "Налево":
+        bot.send_message(message.chat.id, text="Вы вернулись обратно. Куда пойдем?")
+        keyboard4 = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=False, one_time_keyboard=True)
+        btn6 = types.KeyboardButton(text="В сад")
+        btn7 = types.KeyboardButton(text="В кабинет")
+        keyboard4.add(btn6, btn7)
+    if message.text == "В сад":
+        bot.send_message(message.chat.id, text="Вас убили. Вы проиграли")
+    if message.text == "В кабинет":
+        keyboard5 = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=False, one_time_keyboard=True)
+        btn8 = types.KeyboardButton(text="Выглянуть в окно")
+        btn9 = types.KeyboardButton(text="Осмотреть бумаги")
+        keyboard5.add(btn8, btn9)
+        bot.send_message(message.chat.id, text="Ты зашел в кабинет. Там стоит стол, кресло, на стене непонятная карта. Через окно видно сад, на прогулке в котором застрелили лорда. На столе ворох непонятных бумаг и загадочный предмет.")
+    if message.text == "Выглянуть в окно": 
+        bot.send_message(message.chat.id, text="Ты смотришь на место преступления. Вокруг цветы и деревья. И вдруг вдалеке промелькнула чья-то тень... Надо поторопиться, тебе здесь явно не рады")
+    if message.text == "Осмотреть бумаги": 
+        bot.send_message(message.chat.id, text="На столе лежат бумаги - неоплаченные счета, документы, заметки лорда. Полная пепельница и хаос. Ты открыл выдвижной ящик и увидел странную шкатулку с загадочными надписями... На боку шкатулки есть замок. Кажется, ее можно открыть только если знать код. Или нет? Напиши 'Начать', чтобы приступить к загадке")
+    if message.text == "Начать": 
+        markup2 = types.InlineKeyboardMarkup()
+        button1 = types.InlineKeyboardButton("Загадка", url='https://vk.com/timestreamcat')
+        markup2.add(button1)
+    if message.text == "РАЗГАДКА":
+        bot.send_message(message.chat.id, text="Вы открываете шкатулку, и там находится ключ и письмо 'Текст письма к убийце, по которому уже можно догадаться, кто убил лорда'")
+        keyboard6 = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=False, one_time_keyboard=True)
+        btn10 = types.KeyboardButton(text="Открыть дверь в сад")
+        keyboard6.add(btn10)
+    if message.text == "Открыть дверь в сад":
+        bot.send_message(message.chat.id, text="Место преступления. Ты находишь улики и орудие убийства... И кусок карты, которая висела в кабинете, ты заметил деталь, которую упустил до этого. Найти место на карте? Напиши 'Отправить'.")
+        photo = open('/Users/turgaria/Downloads/ohmygod.jpeg', 'rb') 
+        bot.send_photo(message.chat.id, photo)
+        photo.close()
+    if message.text == "Отправить":
+        bot.send_location(message.from_user.id, 59.938924, 30.315311)
+bot.infinity_polling()
